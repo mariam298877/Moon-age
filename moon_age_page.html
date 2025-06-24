@@ -1,0 +1,100 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>How Old Is the Moon?</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display&display=swap');
+
+    body, html {
+      margin:0; padding:0;
+      width:100%; height:100%;
+      font-family: 'Playfair Display', serif;
+      color: #fff;
+      display:flex; align-items:center; justify-content:center;
+      background: url('https://images.unsplash.com/photo-1508264165352-258db2ebd59b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') center/cover no-repeat;
+      position:relative;
+      overflow: hidden;
+    }
+    .overlay {
+      position:absolute; top:0; left:0;
+      width:100%; height:100%;
+      background: rgba(0,0,0,0.55);
+      z-index:1;
+    }
+    .container {
+      position:relative; text-align:center;
+      padding:20px;
+      max-width:90%; width:400px;
+      z-index:2;
+      animation: fadeIn 2s ease-in-out;
+    }
+    .age {
+      font-size:4em;
+      margin:0.2em 0;
+    }
+    .message {
+      font-size:1.3em;
+      margin-top:1em;
+      line-height: 1.6;
+    }
+    .sender {
+      margin-top:2em;
+      font-style:italic;
+      font-size: 1.1em;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .stars {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      animation: twinkle 2s infinite ease-in-out alternate;
+    }
+
+    @keyframes twinkle {
+      0% { opacity: 0.3; }
+      100% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="overlay"></div>
+  <div class="container">
+    <h1>The Moon is turning</h1>
+    <div class="age" id="age">...</div>
+    <div class="message">
+      Happy 29th birthday to my moon.<br>
+      You brighten my life endlessly.
+    </div>
+    <div class="sender">— Mariam</div>
+  </div>
+
+  <script>
+    // حساب العمر من 3 يوليو 1996
+    const birth = new Date('1996-07-03T00:00:00');
+    const now = new Date();
+    const diff = now - birth;
+    const years = Math.floor(diff / (1000*60*60*24*365.25));
+    document.getElementById('age').textContent = years + ' years';
+
+    // رسم النجوم المتلألئة
+    for (let i = 0; i < 100; i++) {
+      const star = document.createElement('div');
+      star.className = 'stars';
+      star.style.top = Math.random() * 100 + '%';
+      star.style.left = Math.random() * 100 + '%';
+      star.style.animationDelay = (Math.random() * 5) + 's';
+      star.style.opacity = Math.random();
+      document.body.appendChild(star);
+    }
+  </script>
+</body>
+</html>
